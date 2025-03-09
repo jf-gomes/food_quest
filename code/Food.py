@@ -1,5 +1,5 @@
 from code.Entity import Entity
-from code.Const import ENTITY_SPEED
+from code.Const import ENTITY_SPEED, WIN_WIDTH, WIN_HEIGHT
 
 class Food(Entity):
 
@@ -18,5 +18,5 @@ class Food(Entity):
             case "bottom":
                 self.rect.centery -= ENTITY_SPEED[self.name]
 
-    def removeFood(self):
-        pass
+    def checkCollision(self):
+        return self.rect.y >= WIN_HEIGHT and self.spawnArea == "top" or self.rect.y <= 0 and self.spawnArea == "bottom" or self.rect.x >= WIN_WIDTH and self.spawnArea == "left" or self.rect.x <= 0 and self.spawnArea == "right"

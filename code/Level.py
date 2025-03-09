@@ -2,7 +2,6 @@ from code.Entity import Entity
 import pygame
 from code.EntityFactory import EntityFactory
 from code.Background import Background
-from code.Const import WIN_HEIGHT, WIN_WIDTH
 
 class Level:
 
@@ -10,7 +9,7 @@ class Level:
         self.window = window
 
         self.entityList: list[Entity] = []
-        self.entityList.append(EntityFactory.getEntity("player2"))
+        self.entityList.append(EntityFactory.getEntity("player1"))
 
     def run(self):
 
@@ -28,13 +27,7 @@ class Level:
 
             for ent in self.entityList:
                 ent.move()
-                if ent.name not in ["player_img_1", "player_img_2", "player_img_3"] and ent.rect.y >= 400 and ent.spawnArea == "top":
-                    self.entityList.remove(ent)
-                elif ent.name not in ["player_img_1", "player_img_2", "player_img_3"] and ent.rect.y >= 100 and ent.spawnArea == "bottom":
-                    self.entityList.remove(ent)
-                elif ent.name not in ["player_img_1", "player_img_2", "player_img_3"] and ent.rect.x >= 400 and ent.spawnArea == "left":
-                    self.entityList.remove(ent)
-                elif ent.name not in ["player_img_1", "player_img_2", "player_img_3"] and ent.rect.x >= 100 and ent.spawnArea == "right":
+                if ent.checkCollision():
                     self.entityList.remove(ent)
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 
