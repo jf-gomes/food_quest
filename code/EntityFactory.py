@@ -6,14 +6,14 @@ from code.Const import WIN_HEIGHT, WIN_WIDTH, FOOD_LIST
 class EntityFactory:
 
     @staticmethod
-    def getEntity(entityType: str):
+    def getEntity(entityType: str, entityList):
         match entityType:
             case "player1":
-                return Player("player_img_1", (WIN_WIDTH // 2, WIN_HEIGHT // 2))
+                return Player("player_img_1", (WIN_WIDTH // 2, WIN_HEIGHT // 2), entityList)
             case "player2":
-                return Player("player_img_2", (WIN_WIDTH // 2, WIN_HEIGHT // 2))
-            case "player1":
-                return Player("player_img_3", (WIN_WIDTH // 2, WIN_HEIGHT // 2))
+                return Player("player_img_2", (WIN_WIDTH // 2, WIN_HEIGHT // 2), entityList)
+            case "player3":
+                return Player("player_img_3", (WIN_WIDTH // 2, WIN_HEIGHT // 2), entityList)
             case "food":
                 foodId = random.randint(0, 7)
                 side = random.choice(["left", "right", "top", "bottom"])

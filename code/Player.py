@@ -1,11 +1,13 @@
-from code.Entity import Entity
 import pygame
 from code.Const import ENTITY_SPEED, WIN_HEIGHT, WIN_WIDTH
 
-class Player(Entity):
+class Player:
 
-    def __init__(self, name, startingPosition):
-        super().__init__(name, startingPosition)
+    def __init__(self, name, startingPosition, entityList):
+        self.name = name
+        self.surf = pygame.image.load('./assets/' + name + '.png').convert_alpha()
+        self.rect = self.surf.get_rect(left=startingPosition[0], top=startingPosition[1])
+        self.entityList = entityList
 
     def move(self):
         pressed_key = pygame.key.get_pressed()
@@ -18,5 +20,10 @@ class Player(Entity):
         if pressed_key[pygame.K_RIGHT] and self.rect.right < WIN_WIDTH:
             self.rect.centerx += ENTITY_SPEED[self.name]
     
-    def checkCollision(self):
-        pass
+    def checkFoodCollision(self):
+        for food in self.entityList:
+            if self.rect.colliderect(food):
+                if food.eatable:
+                    return food
+                else:
+                    return False

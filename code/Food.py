@@ -6,6 +6,7 @@ class Food(Entity):
     def __init__(self, name, startingPosition, eatable: bool, spawnArea: str):
         super().__init__(name, startingPosition)
         self.spawnArea = spawnArea
+        self.eatable = eatable
 
     def move(self):
         match self.spawnArea:
