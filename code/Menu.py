@@ -1,12 +1,12 @@
 import pygame
 from code.Const import MENU_OPTIONS, WIN_WIDTH, WIN_HEIGHT, COLOR_PURPLE
 from code.Level import Level
+from code.Background import Background
 
 class Menu:
 
     def __init__(self, window, menuSelectedOptionId = 0):
         self.window = window
-        self.background = pygame.image.load('./assets/menu_background_img.png').convert_alpha()
         self.menuSelectedOptionId = menuSelectedOptionId
         self.logo = pygame.image.load("./assets/logo.png")
 
@@ -35,7 +35,7 @@ class Menu:
                         level = Level(self.window)
                         level.run()
 
-            self.window.blit(self.background, (0, 0))
+            self.window.blit(Background("menu_background_img").getBg(), (0, 0))
 
             self.window.blit(self.logo, self.logo.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2)))
 
