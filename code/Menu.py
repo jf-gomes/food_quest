@@ -1,12 +1,12 @@
 import pygame
-from code.Const import MENU_OPTIONS, WIN_WIDTH, WIN_HEIGHT, PURPLE
+from code.Const import MENU_OPTIONS, WIN_WIDTH, WIN_HEIGHT, COLOR_PURPLE
+from code.Level import Level
 
 class Menu:
 
     def __init__(self, window, menuSelectedOptionId = 0):
         self.window = window
-        self.surf = pygame.image.load('./assets/background_img.png').convert_alpha()
-        # self.rect = self.surf.get_rect(left=0, top=0)
+        self.background = pygame.image.load('./assets/menu_background_img.png').convert_alpha()
         self.menuSelectedOptionId = menuSelectedOptionId
         self.logo = pygame.image.load("./assets/logo.png")
 
@@ -31,8 +31,11 @@ class Menu:
                     if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 1:
                         pygame.quit()
                         quit()
+                    if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 0:
+                        level = Level(self.window)
+                        level.run()
 
-            self.window.blit(self.surf, (0, 0))
+            self.window.blit(self.background, (0, 0))
 
             self.window.blit(self.logo, self.logo.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2)))
 
@@ -45,7 +48,7 @@ class Menu:
         for menuOption in MENU_OPTIONS:
             font = pygame.font.Font(None, 50)
             if menuOption["id"] == self.menuSelectedOptionId:
-                textColor = PURPLE
+                textColor = COLOR_PURPLE
             else:
                 textColor = (0, 0, 0)
             text = font.render(menuOption["txt"], True, textColor)

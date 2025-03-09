@@ -1,7 +1,13 @@
+from code.Player import Player
+
 class EntityFactory:
 
-    def __init__(self):
-        pass
-
+    @staticmethod
     def getEntity(entityType: str):
-        pass
+        match entityType:
+            case "player1":
+                return Player("player_img_1", (400,400))
+            case "player2":
+                return Player("player_img_2", (0,0))
+            case "player1":
+                return Player("player_img_3", (0,0))
