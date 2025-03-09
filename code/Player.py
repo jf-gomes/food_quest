@@ -23,7 +23,4 @@ class Player:
     def checkFoodCollision(self):
         for food in self.entityList:
             if self.rect.colliderect(food):
-                if food.eatable:
-                    return food
-                else:
-                    return False
+                return food

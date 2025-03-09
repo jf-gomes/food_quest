@@ -10,7 +10,6 @@ class Level:
 
     def __init__(self, window):
         self.window = window
-
         self.entityList: list[Entity] = []
         self.player = Player(entityList=self.entityList, name="player_img_1", startingPosition=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
         self.points = 0
@@ -43,11 +42,16 @@ class Level:
                 if ent.checkCollision():
                     print("food leaving window area")
                     self.entityList.remove(ent)
-                if not playerFoodCollision:
-                    pass
-                else:
-                    self.entityList.remove(playerFoodCollision)
-                    self.points += 1
+
+                if playerFoodCollision:
+                    if playerFoodCollision.eatable:
+                        print("player catches healthy food")
+                        self.entityList.remove(playerFoodCollision)
+                        self.points += 1
+                    else:
+                        print("player catches unhealthy food")
+                        end = End(self.window)
+                        end.run()
           
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 
