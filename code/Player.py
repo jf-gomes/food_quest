@@ -17,10 +17,3 @@ class Player(Entity):
             self.rect.centerx -= ENTITY_SPEED[self.name]
         if pressed_key[pygame.K_RIGHT] and self.rect.right < WIN_WIDTH:
             self.rect.centerx += ENTITY_SPEED[self.name]
-
-        # Desenha elementos na tela
-        # screen.blit(background, (0, 0))  # Fundo
-        # screen.blit(character, character_rect)  # Personagem
-
-        # Atualiza a tela
-        # pygame.display.update()

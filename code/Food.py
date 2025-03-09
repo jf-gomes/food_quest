@@ -1,7 +1,11 @@
-class Food:
+from code.Entity import Entity
+import pygame
+from code.Const import ENTITY_SPEED
 
-    def __init__(self, type: str):
-        self.type = type
+class Food(Entity):
 
-    def move():
+    def __init__(self, name, startingPosition, eatable: bool):
+        super().__init__(name, startingPosition)
+
+    def move(self):
         pass

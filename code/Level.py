@@ -1,6 +1,8 @@
 from code.Entity import Entity
 import pygame
 from code.EntityFactory import EntityFactory
+import random
+from code.Const import WIN_HEIGHT, WIN_WIDTH, FOOD_NAMES
 
 class Level:
 
@@ -12,6 +14,9 @@ class Level:
         self.entityList.append(EntityFactory.getEntity("player1"))
 
     def run(self):
+
+        SPAWN_ITEM_EVENT = pygame.USEREVENT + 1
+        pygame.time.set_timer(SPAWN_ITEM_EVENT, 2000)
 
         clock = pygame.time.Clock()
         
@@ -29,6 +34,9 @@ class Level:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
+                if event.type == SPAWN_ITEM_EVENT:
+                    self.entityList.append(EntityFactory.getEntity("banana"))
+                    print("banana adicionada")
 
             pygame.display.flip()
 

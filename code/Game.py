@@ -16,4 +16,4 @@ class Game:
 
             menu = Menu(self.window)
 
-            menu_selected_option = menu.run()
+            menu.run()

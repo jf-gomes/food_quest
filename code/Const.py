@@ -8,6 +8,13 @@ ENTITY_SPEED = {
     'player_img_3': 5
 }
 
+# F
+
+FOOD_NAMES = {
+    "banana",
+    "rocks"
+}
+
 #M
 MENU_OPTIONS = [
     {
