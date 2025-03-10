@@ -1,17 +1,17 @@
-from code.Entity import Entity
 import pygame
-from code.EntityFactory import EntityFactory
+from code.FoodFactory import FoodFactory
 from code.Background import Background
 from code.End import End
 from code.Player import Player
 from code.Const import WIN_HEIGHT, WIN_WIDTH
+from code.Food import Food
 
 class Level:
 
     def __init__(self, window):
         self.window = window
-        self.entityList: list[Entity] = []
-        self.player = Player(entityList=self.entityList, name="player_img_1", startingPosition=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
+        self.foodList: list[Food] = []
+        self.player = Player(foodList=self.foodList, name="player_img_1", startingPosition=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
         self.points = 0
 
     def run(self):
@@ -36,31 +36,31 @@ class Level:
 
             playerFoodCollision = self.player.checkFoodCollision()
 
-            for ent in self.entityList:
-                ent.move()
+            for food in self.foodList:
+                food.move()
 
-                if ent.checkCollision():
+                if food.checkCollision():
                     print("food leaving window area")
-                    self.entityList.remove(ent)
+                    self.foodList.remove(food)
 
                 if playerFoodCollision:
                     if playerFoodCollision.eatable:
                         print("player catches healthy food")
-                        self.entityList.remove(playerFoodCollision)
+                        self.foodList.remove(playerFoodCollision)
                         self.points += 1
                     else:
                         print("player catches unhealthy food")
                         end = End(self.window)
                         end.run()
           
-                self.window.blit(source=ent.surf, dest=ent.rect)
+                self.window.blit(source=food.surf, dest=food.rect)
                 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
                 if event.type == SPAWN_ITEM_EVENT:
-                    self.entityList.append(EntityFactory.getEntity("food", self.entityList))
+                    self.foodList.append(FoodFactory.getFood())
 
             font = pygame.font.Font(None, 50)
             text = font.render(str(self.points), True, (0, 0, 0))

@@ -1,12 +1,16 @@
-from code.Entity import Entity
 from code.Const import ENTITY_SPEED, WIN_WIDTH, WIN_HEIGHT
+import pygame
 
-class Food(Entity):
+class Food:
 
-    def __init__(self, name, startingPosition, eatable: bool, spawnArea: str):
-        super().__init__(name, startingPosition)
-        self.spawnArea = spawnArea
+    def __init__(self, name, startingPosition: tuple, eatable: bool, spawnArea: str):
+        self.name = name
+        self.startingPosition = startingPosition
         self.eatable = eatable
+        self.spawnArea = spawnArea
+        
+        self.surf = pygame.image.load('./assets/' + name + '.png').convert_alpha()
+        self.rect = self.surf.get_rect(left=startingPosition[0], top=startingPosition[1])
 
     def move(self):
         match self.spawnArea:

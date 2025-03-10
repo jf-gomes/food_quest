@@ -3,11 +3,11 @@ from code.Const import ENTITY_SPEED, WIN_HEIGHT, WIN_WIDTH
 
 class Player:
 
-    def __init__(self, name, startingPosition, entityList):
+    def __init__(self, name, startingPosition, foodList):
         self.name = name
         self.surf = pygame.image.load('./assets/' + name + '.png').convert_alpha()
         self.rect = self.surf.get_rect(left=startingPosition[0], top=startingPosition[1])
-        self.entityList = entityList
+        self.foodList = foodList
 
     def move(self):
         pressed_key = pygame.key.get_pressed()
@@ -21,6 +21,6 @@ class Player:
             self.rect.centerx += ENTITY_SPEED[self.name]
     
     def checkFoodCollision(self):
-        for food in self.entityList:
+        for food in self.foodList:
             if self.rect.colliderect(food):
                 return food
