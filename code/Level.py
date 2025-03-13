@@ -12,13 +12,12 @@ class Level:
         self.window = window
         self.foodList: list[Food] = []
         self.player = Player(foodList=self.foodList, name="player_img_1", startingPosition=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
-        self.points = 0
+        self.points = 21
 
     def run(self):
-
-        spawnTime = 2000
+        
         SPAWN_ITEM_EVENT = pygame.USEREVENT + 1
-        pygame.time.set_timer(SPAWN_ITEM_EVENT, spawnTime)
+        pygame.time.set_timer(SPAWN_ITEM_EVENT, self.getSpawnTime())
 
         clock = pygame.time.Clock()
 
@@ -60,7 +59,7 @@ class Level:
                     pygame.quit()
                     quit()
                 if event.type == SPAWN_ITEM_EVENT:
-                    self.foodList.append(FoodFactory.getFood())
+                    self.foodList.append(FoodFactory.getFood(speed=self.getSpeed()))
 
             font = pygame.font.Font(None, 50)
             text = font.render(str(self.points), True, (0, 0, 0))
@@ -69,3 +68,30 @@ class Level:
 
             pygame.display.flip()
 
+    def getSpeed(self):
+        if self.points <= 10:
+            return 7
+        elif self.points <= 20:
+            return 10
+        elif self.points <= 30:
+            return 12
+        elif self.points <= 40:
+            return 15
+        elif self.points <= 40:
+            return 20
+        elif self.points <= 50:
+            return 25
+        
+    def getSpawnTime(self):
+        if self.points <= 10:
+            return 3000
+        elif self.points <= 20:
+            return 2500
+        elif self.points <= 30:
+            return 2000
+        elif self.points <= 40:
+            return 1500
+        elif self.points <= 40:
+            return 1000
+        elif self.points <= 50:
+            return 500

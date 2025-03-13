@@ -5,7 +5,7 @@ from code.Const import WIN_HEIGHT, WIN_WIDTH, FOOD_LIST
 class FoodFactory:
 
     @staticmethod
-    def getFood():
+    def getFood(speed):
         foodId = random.randint(0, 7)
         side = random.choice(["left", "right", "top", "bottom"])
         if side == "left":
@@ -20,4 +20,4 @@ class FoodFactory:
         elif side == "bottom":
             x = random.randint(0, WIN_WIDTH - 50)
             y = WIN_HEIGHT + 50
-        return Food(name=FOOD_LIST[foodId]["name"], eatable=FOOD_LIST[foodId]["eatable"], startingPosition=(x, y), spawnArea=side)
+        return Food(name=FOOD_LIST[foodId]["name"], eatable=FOOD_LIST[foodId]["eatable"], startingPosition=(x, y), spawnArea=side, speed=speed)
