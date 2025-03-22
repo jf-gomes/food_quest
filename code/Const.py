@@ -65,12 +65,17 @@ MENU_OPTIONS = [
     {
         "id": 0,
         "txt": "NOVO JOGO",
-        "y_position": 390
+        "y_position": 350
     },
     {
         "id": 1,
+        "txt": "SCORE",
+        "y_position": 400
+    },
+    {
+        "id": 2,
         "txt": "SAIR",
-        "y_position": 440
+        "y_position": 450
     }
 ]
 

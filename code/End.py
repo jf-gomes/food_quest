@@ -1,6 +1,7 @@
 from code.Background import Background
 import pygame
 from code.Const import WIN_HEIGHT, WIN_WIDTH, COLOR_PURPLE, MENU_OPTIONS
+from code.Score import Score
 
 class End:
 
@@ -8,7 +9,7 @@ class End:
         self.window = window
         self.menuSelectedOptionId = menuSelectedOptionId
 
-    def run(self, Level):
+    def run(self, Level, Menu):
         
         while True:
 
@@ -17,16 +18,19 @@ class End:
                     pygame.quit()
                     quit()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_UP:
-                        self.menuSelectedOptionId = 0
-                    if event.key == pygame.K_DOWN:
-                        self.menuSelectedOptionId = 1
-                    if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 1:
+                    if event.key == pygame.K_UP and self.menuSelectedOptionId > 0:
+                        self.menuSelectedOptionId -= 1
+                    if event.key == pygame.K_DOWN and self.menuSelectedOptionId < 2:
+                        self.menuSelectedOptionId += 1
+                    if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 2:
                         pygame.quit()
                         quit()
+                    if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 1:
+                        score = Score()
+                        score.show()
                     if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 0:
                         level = Level(self.window)
-                        level.run()
+                        level.run(Menu=Menu)
             
 
             self.window.blit(Background("menu_background_img").getBg(), (0, 0))

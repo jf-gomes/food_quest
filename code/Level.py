@@ -14,7 +14,7 @@ class Level:
         self.player = Player(foodList=self.foodList, name="player_img_1", startingPosition=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
         self.points = 0
 
-    def run(self):
+    def run(self, Menu):
         
         SPAWN_ITEM_EVENT = pygame.USEREVENT + 1
         pygame.time.set_timer(SPAWN_ITEM_EVENT, self.getSpawnTime())
@@ -50,7 +50,7 @@ class Level:
                     else:
                         print("player catches unhealthy food")
                         end = End(self.window)
-                        end.run(Level=Level)
+                        end.run(Level=Level, Menu=Menu)
           
                 self.window.blit(source=food.surf, dest=food.rect)
                 
