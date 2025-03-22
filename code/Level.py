@@ -12,7 +12,7 @@ class Level:
         self.window = window
         self.foodList: list[Food] = []
         self.player = Player(foodList=self.foodList, name="player_img_1", startingPosition=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
-        self.points = 21
+        self.points = 0
 
     def run(self):
         
