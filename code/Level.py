@@ -50,7 +50,7 @@ class Level:
                     else:
                         print("player catches unhealthy food")
                         end = End(self.window)
-                        end.run()
+                        end.run(Level=Level)
           
                 self.window.blit(source=food.surf, dest=food.rect)
                 

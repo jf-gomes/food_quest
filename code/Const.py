@@ -17,7 +17,6 @@ ENTITY_SPEED = {
 }
 
 # F
-
 FOOD_LIST = [
     {
         "id": 0,
