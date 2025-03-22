@@ -1,10 +1,25 @@
+from code.Background import Background
+import pygame
+from DBProxy import DBProxy
+
 class Score:
 
-    def __init__(self):
-        pass
+    def __init__(self, window):
+        self.window = window
 
     def show(self):
-        print("score")
+
+        while True:
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+
+            self.window.blit(Background("menu_background_img").getBg(), (0, 0))
+
+            pygame.display.update()
 
     def save(self):
-        pass
+        db_proxy = DBProxy(db_name="game_data")
+        
