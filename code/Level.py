@@ -49,7 +49,7 @@ class Level:
                         self.points += 1
                     else:
                         print("player catches unhealthy food")
-                        end = End(self.window)
+                        end = End(window=self.window, points=self.points)
                         end.run(Level=Level, Menu=Menu)
           
                 self.window.blit(source=food.surf, dest=food.rect)

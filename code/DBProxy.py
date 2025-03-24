@@ -6,7 +6,7 @@ class DBProxy:
         self.db_name = db_name
         self.conn = sqlite3.connect(db_name)
         self.conn.execute(
-            ''''CREATE TABLE IF NOT EXISTS data (
+            '''CREATE TABLE IF NOT EXISTS data (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             score INTEGER NOT NULL,
@@ -15,8 +15,13 @@ class DBProxy:
             '''
         )
     
-    def save(self, scoreDict: dict):
-        self.conn.execute('INSERT INTO data (name, score, date) VALUES (:name, :score, :date)', scoreDict)
+    def save(self, name, score, date):
+        score_dict = {
+            "name": name,
+            "score": score,
+            "date": date
+        }
+        self.conn.execute('INSERT INTO data (name, score, date) VALUES (:name, :score, :date)', score_dict,)
         self.conn.commit()
 
     def retrieveTop10(self) -> list:

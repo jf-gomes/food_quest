@@ -5,9 +5,10 @@ from code.Score import Score
 
 class End:
 
-    def __init__(self, window, menuSelectedOptionId = 0):
+    def __init__(self, window, points, menuSelectedOptionId = 0):
         self.window = window
         self.menuSelectedOptionId = menuSelectedOptionId
+        self.points = points
 
     def run(self, Level, Menu):
         
@@ -26,7 +27,7 @@ class End:
                         pygame.quit()
                         quit()
                     if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 1:
-                        score = Score()
+                        score = Score(window=self.window, points=self.points, origin="end")
                         score.show()
                     if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 0:
                         level = Level(self.window)
