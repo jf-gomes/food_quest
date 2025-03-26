@@ -55,7 +55,7 @@ class Menu:
                 pygame.quit()
                 quit()
             if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 1:
-                score = Score(window=self.window, points=0, origin="menu")
+                score = Score(window=self.window, points=0, origin="menu", level=Level, menu=Menu, namesToRegister=0)
                 score.show()
             if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 0:
                 level = Level(self.window)

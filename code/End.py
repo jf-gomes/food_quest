@@ -28,7 +28,7 @@ class End:
                         pygame.quit()
                         quit()
                     if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 1:
-                        score = Score(window=self.window, points=self.points, origin="end")
+                        score = Score(window=self.window, points=self.points, origin="end", level=Level, menu=Menu, namesToRegister=1)
                         score.show()
                     if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 0:
                         level = Level(self.window)

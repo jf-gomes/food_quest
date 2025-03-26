@@ -65,7 +65,8 @@ MENU_OPTIONS = [
     {
         "id": 0,
         "txt": "NOVO JOGO",
-        "y_position": 350
+        "y_position": 350,
+        "y_position_score_screen": 400
     },
     {
         "id": 1,
@@ -75,8 +76,53 @@ MENU_OPTIONS = [
     {
         "id": 2,
         "txt": "SAIR",
-        "y_position": 450
+        "y_position": 450,
+        "y_position_score_screen": 450
     }
+]
+
+# S
+SCORE_TABLE_Y_POSITION = [
+    {
+        "id": 0,
+        "y_position": 70
+    },
+    {
+        "id": 1,
+        "y_position": 90
+    },
+    {
+        "id": 2,
+        "y_position": 110
+    },
+    {
+        "id": 3,
+        "y_position": 130
+    },
+    {
+        "id": 4,
+        "y_position": 150
+    },
+    {
+        "id": 5,
+        "y_position": 170
+    },
+    {
+        "id": 6,
+        "y_position": 190
+    },
+    {
+        "id": 7,
+        "y_position": 210
+    },
+    {
+        "id": 8,
+        "y_position": 230
+    },
+    {
+        "id": 9,
+        "y_position": 250
+    },
 ]
 
 # W
