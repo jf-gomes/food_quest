@@ -3,6 +3,7 @@ from code.Const import MENU_OPTIONS, WIN_WIDTH, WIN_HEIGHT, COLOR_PURPLE
 from code.Level import Level
 from code.Background import Background
 from code.Score import Score
+from code.TxtFactory import TxtFactory
 
 class Menu:
 
@@ -35,14 +36,14 @@ class Menu:
 
     def displayMenuOptions(self):
         for menuOption in MENU_OPTIONS:
-            font = pygame.font.Font(None, 50)
+            
             if menuOption["id"] == self.menuSelectedOptionId:
                 textColor = COLOR_PURPLE
             else:
                 textColor = (0, 0, 0)
-            text = font.render(menuOption["txt"], True, textColor)
-            text_rect = text.get_rect(center=(WIN_WIDTH // 2, menuOption["y_position"]))
-            self.window.blit(text, text_rect)
+            
+            txt = TxtFactory('boldonse', 24, textColor, WIN_WIDTH // 2, menuOption['y_position'], menuOption['txt'], self.window)
+            txt.write()
 
     def menuNavigation(self, event):
         if event.type == pygame.KEYDOWN:

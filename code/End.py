@@ -2,6 +2,7 @@ from code.Background import Background
 import pygame
 from code.Const import WIN_HEIGHT, WIN_WIDTH, COLOR_PURPLE, MENU_OPTIONS
 from code.Score import Score
+from code.TxtFactory import TxtFactory
 
 class End:
 
@@ -36,10 +37,8 @@ class End:
 
             self.window.blit(Background("menu_background_img").getBg(), (0, 0))
 
-            font = pygame.font.Font(None, 50)
-            text = font.render("Game Over", True, COLOR_PURPLE)
-            text_rect = text.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
-            self.window.blit(text, text_rect)
+            txt = TxtFactory('boldonse', 24, (0, 0, 0), WIN_WIDTH // 2, WIN_HEIGHT // 2, 'Game Over!', self.window)
+            txt.write()
 
             self.displayEndOptions()
 
@@ -48,11 +47,11 @@ class End:
     def displayEndOptions(self):
 
         for menuOption in MENU_OPTIONS:
-            font = pygame.font.Font(None, 50)
+            
             if menuOption["id"] == self.menuSelectedOptionId:
                 textColor = COLOR_PURPLE
             else:
                 textColor = (0, 0, 0)
-            text = font.render(menuOption["txt"], True, textColor)
-            text_rect = text.get_rect(center=(WIN_WIDTH // 2, menuOption["y_position"]))
-            self.window.blit(text, text_rect)
+            
+            txt = TxtFactory('boldonse', 24, textColor, WIN_WIDTH // 2, menuOption['y_position'], menuOption['txt'], self.window)
+            txt.write()

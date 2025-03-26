@@ -24,7 +24,7 @@ class DBProxy:
         self.conn.execute('INSERT INTO data (name, score, date) VALUES (:name, :score, :date)', score_dict,)
         self.conn.commit()
 
-    def retrieveTop10(self) -> list:
+    def retrieveTop10(self):
         return self.conn.execute('SELECT * FROM data ORDER BY score DESC LIMIT 10').fetchall()
     
     def close(self):

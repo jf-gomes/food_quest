@@ -5,6 +5,7 @@ from code.End import End
 from code.Player import Player
 from code.Const import WIN_HEIGHT, WIN_WIDTH
 from code.Food import Food
+from code.TxtFactory import TxtFactory
 
 class Level:
 
@@ -39,16 +40,15 @@ class Level:
                 food.move()
 
                 if food.checkCollision():
-                    print("food leaving window area")
+                    print(f'{food.name} leaving window area')
                     self.foodList.remove(food)
 
                 if playerFoodCollision:
+                    print(f'player catches {food.name}')
                     if playerFoodCollision.eatable:
-                        print("player catches healthy food")
                         self.foodList.remove(playerFoodCollision)
                         self.points += 1
                     else:
-                        print("player catches unhealthy food")
                         end = End(window=self.window, points=self.points)
                         end.run(Level=Level, Menu=Menu)
           
@@ -61,10 +61,8 @@ class Level:
                 if event.type == SPAWN_ITEM_EVENT:
                     self.foodList.append(FoodFactory.getFood(speed=self.getSpeed()))
 
-            font = pygame.font.Font(None, 50)
-            text = font.render(str(self.points), True, (0, 0, 0))
-            text_rect = text.get_rect(center=(50, 470))
-            self.window.blit(text, text_rect)
+            txt = TxtFactory('boldonse', 16, (0, 0, 0), 100, 470, f'Pontuação: {str(self.points)}', self.window)
+            txt.write()
 
             pygame.display.flip()
 
