@@ -7,14 +7,14 @@ from code.TxtFactory import TxtFactory
 
 class Score:
 
-    def __init__(self, window, points, origin, namesToRegister, level, menu, menuSelectedOptionId = 0):
+    def __init__(self, window, points, origin, namesToRegister, level, menu):
         self.window = window
         self.points = points
         self.origin = origin
         self.namesToRegister = namesToRegister
         self.level = level
         self.menu = menu
-        self.menuSelectedOptionId = menuSelectedOptionId
+        self.menuSelectedOptionId = 0
 
     def show(self):
 

@@ -7,16 +7,14 @@ from code.TxtFactory import TxtFactory
 
 class Menu:
 
-    def __init__(self, window, menuSelectedOptionId = 0):
+    def __init__(self, window):
         self.window = window
-        self.menuSelectedOptionId = menuSelectedOptionId
+        self.menuSelectedOptionId = 0
         self.logo = pygame.image.load("./assets/logo.png")
 
     def run(self):
 
         pygame.display.set_caption("Food Quest")
-        
-        pygame.font.init()
 
         while True:
 

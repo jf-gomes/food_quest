@@ -13,7 +13,7 @@ class Level:
         self.window = window
         self.foodList: list[Food] = []
         self.player = Player(foodList=self.foodList, name="player_img_1", startingPosition=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
-        self.points = 17
+        self.points = 0
 
     def run(self, Menu):
         
@@ -21,8 +21,6 @@ class Level:
         pygame.time.set_timer(SPAWN_ITEM_EVENT, self.getSpawnTime())
 
         clock = pygame.time.Clock()
-
-        pygame.font.init()
         
         while True:
 

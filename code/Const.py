@@ -65,17 +65,20 @@ MENU_OPTIONS = [
     {
         "id": 0,
         "txt": "NOVO JOGO",
+        "txt_end_screen": "NOVO JOGO",
         "y_position": 350,
         "y_position_score_screen": 400
     },
     {
         "id": 1,
         "txt": "SCORE",
+        "txt_end_screen": "SALVAR PONTUAÇÃO",
         "y_position": 400
     },
     {
         "id": 2,
         "txt": "SAIR",
+        "txt_end_screen": "SAIR",
         "y_position": 450,
         "y_position_score_screen": 450
     }
