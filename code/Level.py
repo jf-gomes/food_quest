@@ -6,6 +6,7 @@ from code.Player import Player
 from code.Const import WIN_HEIGHT, WIN_WIDTH
 from code.Food import Food
 from code.TxtFactory import TxtFactory
+from code.SoundFactory import SoundFactory
 
 class Level:
 
@@ -14,6 +15,10 @@ class Level:
         self.foodList: list[Food] = []
         self.player = Player(foodList=self.foodList, name="player_img_1", startingPosition=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
         self.points = 0
+        self.levelMusic = SoundFactory('level_song', 'songs', 'mp3', True)
+        self.foodEatingSound = SoundFactory('apple_bite', 'sounds', 'mp3', False)
+        self.playerDamageSound = SoundFactory('grunt', 'sounds', 'wav', False)
+        self.menuMusic = SoundFactory('menu_song', 'songs', 'wav', True)
 
     def run(self, Menu):
         
@@ -21,6 +26,8 @@ class Level:
         pygame.time.set_timer(SPAWN_ITEM_EVENT, self.getSpawnTime())
 
         clock = pygame.time.Clock()
+
+        self.levelMusic.play()
         
         while True:
 
@@ -43,9 +50,13 @@ class Level:
                 if playerFoodCollision:
                     print(f'player catches {food.name}')
                     if playerFoodCollision.eatable:
+                        self.foodEatingSound.play()
                         self.foodList.remove(playerFoodCollision)
                         self.points += 1
                     else:
+                        self.playerDamageSound.play()
+                        self.levelMusic.stop()
+                        self.menuMusic.play()
                         end = End(window=self.window, points=self.points)
                         end.run(Level=Level, Menu=Menu)
           

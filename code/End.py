@@ -3,6 +3,7 @@ import pygame
 from code.Const import WIN_HEIGHT, WIN_WIDTH, COLOR_PURPLE, MENU_OPTIONS
 from code.Score import Score
 from code.TxtFactory import TxtFactory
+from code.SoundFactory import SoundFactory
 
 class End:
 
@@ -10,6 +11,7 @@ class End:
         self.window = window
         self.points = points
         self.menuSelectedOptionId = 0
+        self.levelMusic = SoundFactory('level_song', 'songs', 'mp3', True)
 
     def run(self, Level, Menu):
         
@@ -53,5 +55,6 @@ class End:
                 score = Score(window=self.window, points=self.points, origin="end", level=Level, menu=Menu, namesToRegister=1)
                 score.show()
             if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 0:
+                self.levelMusic.play()
                 level = Level(self.window)
                 level.run(Menu=Menu)
