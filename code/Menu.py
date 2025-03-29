@@ -17,7 +17,6 @@ class Menu:
         pygame.display.set_caption("Food Quest")
 
         while True:
-
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -33,8 +32,8 @@ class Menu:
             pygame.display.update()
 
     def displayMenuOptions(self):
+
         for menuOption in MENU_OPTIONS:
-            
             if menuOption["id"] == self.menuSelectedOptionId:
                 textColor = COLOR_PURPLE
             else:
