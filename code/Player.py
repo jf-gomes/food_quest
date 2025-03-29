@@ -5,7 +5,7 @@ class Player:
 
     def __init__(self, name, startingPosition, foodList):
         self.name = name
-        self.surf = pygame.image.load('./assets/' + name + '.png').convert_alpha()
+        self.surf = pygame.image.load('./assets/player/' + name + '.png').convert_alpha()
         self.rect = self.surf.get_rect(left=startingPosition[0], top=startingPosition[1])
         self.foodList = foodList
 

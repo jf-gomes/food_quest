@@ -6,4 +6,4 @@ class Background:
         self.name = name
 
     def getBg(self):
-        return pygame.image.load('./assets/' + self.name +  '.png').convert_alpha()
+        return pygame.image.load('./assets/bg/' + self.name +  '.png').convert_alpha()

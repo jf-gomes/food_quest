@@ -10,7 +10,7 @@ class Food:
         self.spawnArea = spawnArea
         self.speed = speed
         
-        self.surf = pygame.image.load('./assets/' + name + '.png').convert_alpha()
+        self.surf = pygame.image.load('./assets/food/' + name + '.png').convert_alpha()
         self.rect = self.surf.get_rect(left=startingPosition[0], top=startingPosition[1])
 
     def move(self):
