@@ -4,6 +4,7 @@ from code.Level import Level
 from code.Background import Background
 from code.Score import Score
 from code.TxtFactory import TxtFactory
+from code.SoundFactory import SoundFactory
 
 class Menu:
 
@@ -11,10 +12,13 @@ class Menu:
         self.window = window
         self.menuSelectedOptionId = 0
         self.logo = pygame.image.load("./assets/logo.png")
+        self.menuMusic = SoundFactory('menu_song', 'songs', 'wav', True)
 
     def run(self):
 
         pygame.display.set_caption("Food Quest")
+
+        self.menuMusic.play()
 
         while True:
             for event in pygame.event.get():
@@ -55,5 +59,6 @@ class Menu:
                 score = Score(window=self.window, points=0, origin="menu", level=Level, menu=Menu, namesToRegister=0)
                 score.show()
             if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 0:
+                self.menuMusic.stop()
                 level = Level(self.window)
                 level.run(Menu=Menu)
