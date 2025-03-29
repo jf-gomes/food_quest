@@ -36,7 +36,6 @@ class Level:
 
             for food in self.foodList:
                 food.move()
-
                 if food.checkCollision():
                     print(f'{food.name} leaving window area')
                     self.foodList.remove(food)

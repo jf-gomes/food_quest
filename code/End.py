@@ -14,7 +14,6 @@ class End:
     def run(self, Level, Menu):
         
         while True:
-
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -33,7 +32,6 @@ class End:
     def displayEndOptions(self):
 
         for menuOption in MENU_OPTIONS:
-            
             if menuOption["id"] == self.menuSelectedOptionId:
                 textColor = COLOR_PURPLE
             else:
