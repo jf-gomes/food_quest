@@ -1,37 +1,35 @@
-import pygame
-from code.Const import MENU_OPTIONS, WIN_WIDTH, WIN_HEIGHT, COLOR_PURPLE
-from code.Level import Level
 from code.Background import Background
+import pygame
+from code.Const import WIN_HEIGHT, WIN_WIDTH, COLOR_PURPLE, MENU_OPTIONS
 from code.Score import Score
 from code.TxtFactory import TxtFactory
 
-class Menu:
+class End:
 
-    def __init__(self, window):
+    def __init__(self, window, points):
         self.window = window
+        self.points = points
         self.menuSelectedOptionId = 0
-        self.logo = pygame.image.load("./assets/logo.png")
 
-    def run(self):
-
-        pygame.display.set_caption("Food Quest")
-
+    def run(self, Level, Menu):
+        
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
-                self.menuNavigation(event=event)
+                self.menuNavigation(event=event, Level=Level, Menu=Menu)
 
             self.window.blit(Background("menu_background_img").getBg(), (0, 0))
 
-            self.window.blit(self.logo, self.logo.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2)))
+            txt = TxtFactory('boldonse', 24, (0, 0, 0), WIN_WIDTH // 2, WIN_HEIGHT // 2, 'Game Over!', self.window)
+            txt.write()
 
-            self.displayMenuOptions()
+            self.displayEndOptions()
 
             pygame.display.update()
 
-    def displayMenuOptions(self):
+    def displayEndOptions(self):
 
         for menuOption in MENU_OPTIONS:
             if menuOption["id"] == self.menuSelectedOptionId:
@@ -39,10 +37,10 @@ class Menu:
             else:
                 textColor = (0, 0, 0)
             
-            txt = TxtFactory('boldonse', 24, textColor, WIN_WIDTH // 2, menuOption['y_position'], menuOption['txt'], self.window)
+            txt = TxtFactory('boldonse', 24, textColor, WIN_WIDTH // 2, menuOption['y_position'], menuOption['txt_end_screen'], self.window)
             txt.write()
 
-    def menuNavigation(self, event):
+    def menuNavigation(self, event, Level, Menu):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP and self.menuSelectedOptionId > 0:
                 self.menuSelectedOptionId -= 1
@@ -52,7 +50,7 @@ class Menu:
                 pygame.quit()
                 quit()
             if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 1:
-                score = Score(window=self.window, points=0, origin="menu", level=Level, menu=Menu, namesToRegister=0)
+                score = Score(window=self.window, points=self.points, origin="end", level=Level, menu=Menu, namesToRegister=1)
                 score.show()
             if event.key == pygame.K_RETURN and self.menuSelectedOptionId == 0:
                 level = Level(self.window)
